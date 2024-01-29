@@ -1,0 +1,150 @@
+
+C950 DSAII
+Beverly L Murray
+Student ID: #001328583
+  
+A.
+The “nearest neighbor” algorithm was used in main.py for loading the packages into the truck in their delivery order.  This is a self-adjusting algorithm because it decides how to deliver packages by finding the next closest package.  The algorithm performs the task of delivering all packages.
+
+  B. 1.
+To start coding the nearest neighbor algorithm in pseudocode:
+Trucks: have packages selected for them
+The algorithm takes the truck and uses the packages on the truck
+•	Get a list ready for the random list of packages, these are not in order
+•	Get a list ready for the in-order packages, this will hold them in order after the algorithm picks the package	
+•	for each package in the truck:
+o	Packages are put in a random list
+•	To find the first package:	
+•	For each package in the random list:
+o	get the distance between the hub and the package
+o	if the package is closer than the last one, it is now the first package to be delivered, after going through all the packages in the random list, you will find the closest one
+o	this package goes on the in-order list
+o	this package is taken off the random list
+•	While there are still packages on the random list:
+o	For each package on the random list:
+	Get the distance between the most recent package on the in-order list and the package
+	If the package is closer than the previous comparison, it is now the next package to be delivered, after going through the list, you will find the closest package on the list
+	This package will be next to go on the in-order list
+	This package is removed from the random list
+	You will continue to go through all the packages on the random list, finding the next closest package and putting it on the in-order list until there are no more packages on the random list
+The algorithm will return an in-order list that will give you an efficient way to deliver packages, this list is the route for the package delivery
+•	In my code, I also used the mileage I got from the nearest package to keep track of the truck’s mileage.  Once you add up the three trucks’ mileage, you will have the total mileage. The trucks move at a constant 18 miles per hour, so the mileage can be used to calculate the time it takes to travel between deliveries.  The time is then used to give a delivery time for the package.  This time is also used to update the status of the package.
+
+  B. 2.
+The programming environment used to create this Python application was a desktop computer running Windows 10 64-bit OS, PyCharm Community Edition 2022.3.3, Microsoft Word, Microsoft Excel, and Notepad.
+Processor: AMD Ryzen 5 5600X 6 Core Processor
+Memory RAM: 16 GB
+
+  B. 3.
+Code comments include space-time complexity.
+The entire program has an O(n^2) time complexity.
+The space-time complexity of the nearest neighbor algorithm has a time complexity of O(n^2). The truck and package class have a time complexity of O(1). The hash table has a time complexity of O(n).
+
+  B. 4.
+The hash table can change the capacity , allowing for additional package information storage.  The amount of storage required to hold the data will increase as the data amount increases. Although the nearest neighbor algorithm does rely on manually assigning packages to the trucks, the program will determine an efficient way to deliver them.  With only 3 trucks and a limit of 16 packages per truck, I would recommend getting another truck if there are going to be more than 48 packages. The program has comments on where another truck could be added.   The combined total miles traveled will also increase with more packages, but should still be efficient for the increased number of packages.  More packages might mean that it will go over the expressed limit of a combined 140 miles.
+The program can adapt to changing the packages, locations, and distances by uploading a new set of CSV files.  These lists can be of a different length than those that were initially provided.  The application will then determine a new route and optimal path.
+In the future, it might be desirable to develop code that will determine which package goes on which truck, but for our purposes, that is not currently necessary.  Packages can be manually assigned to a truck.
+
+  B. 5.
+The program is simple and easy to maintain.  
+It is written in Python which is an easy and well-known programming language.  There are sufficient comments throughout.  The code is precise and not superfluous.  Each file follows the same format. Comments explain the why, what, and how.  They also improve readability by summarizing major blocks of code.  This aids in maintaining the software.
+The efficiency of the entire program is O(N^2) quadratic.
+The user interface is straightforward to use.
+
+  B. 6.
+Hash tables are a self-adjusting data structure.  
+Weaknesses:
+Hash tables need to be designed to avoid collisions.  A hash collision, also called a hash clash, is when data being stored in a hash table has the same hash value.  This can cause it to slow down from a constant O(1) time complexity to a linear O(N) when resolving the collision.  This can be done by allocating more space.  Hash functions will not accept “null” as a key’s value because it requires a unique key to find its associated value.
+Strengths:
+Hash tables are fast and efficient when creating, looking up, and deleting stored data.  They will have n keys and n elements which is O(2n) complexity with simplifies to an O(n)  time complexity.  Hash tables are easy to implement with Python’s built-in hash() function.
+
+  C. 1. 
+The initial comment in main.py includes my first name, last name, and student ID.
+The code is original and runs without error.
+Included separately	
+
+  C. 2.
+Comments are throughout the code.  They explain the why, what, and how.  They also improve readability by summarizing what major blocks of code are for.
+Included separately
+
+  D.
+A hash table is a self-adjusting data structure that can be used with the algorithm identified in part A to store the package data.
+
+  D. 1.
+The package data is the data point that is stored in the hash table as an object.  The package object contains the package ID, address, city, state, zip code, deadline, weight, notes, status, departure time, and delivery time.  It is stored in the hash table with “insert” and using (package ID, package object) as (key and value).  There are also functions for “lookup” and “remove.”
+The package ID is the key to look up, insert, and remove the package object from the hash table.	
+
+  E. and F.
+This is located in hashtable.py and main.py (approximately line 65)
+
+  G. 
+The interface is in main.py (approximately line 264)
+The interface starts with printing the total mileage of all trucks.  It also lists the trucks, their assigned driver, the truck departure time, and the truck’s mileage.
+Then you come to a menu option of seeing the status of one package or all packages.
+If selecting all packages, you are asked to input a time, then the program will give you an updated status of all packages at that time, including where the packages are.
+If you select a single package, you will be asked for the package ID, then asked for the time, the program will then print that package’s information, including the current status.  If it’s not delivered or is still at the hub, it will still show those expected times so you know when the package will be changing status.
+Screenshots of all packages:
+1.	Screenshot of all packages at 9 am in file G9am.jpg
+2.	Screenshot of all packages at 10 am in file G10am.jpg
+3.	Screenshot of all packages at 1 pm in file G1pm.jpg
+
+  H.
+Screenshot showing successful completion of code, free from runtime errors, that shows the total mileage of all trucks in file H.jpg
+
+  I. 1.
+The nearest neighbor algorithm is very simple to understand and implement.  It is scalable.  It can accommodate a larger number of packages or trucks.  The algorithm finds a suitable solution to the constraints provided.  All packages were delivered on time and the trucks drove under a combined 140 miles.
+
+  I. 2.
+The algorithm used meets all requirements.  The screenshots requested can verify this.  This can also be verified through the user interface.
+The combined mileage is 93.8.
+All packages were delivered on time.
+All packages were delivered according to their delivery specifications.
+
+  I 3.
+Two other algorithms that will meet the requirements are Dijkstra and the greedy algorithm.
+
+  I 3. a.
+The Dijkstra can find the shortest between vertices on a weighted graph.  It can find the shortest path from the start vertex to each vertex on the graph.  This could be implemented to reduce total miles.  My algorithm does not use a graph.
+A greedy algorithm chooses the best option without considering future selections.  This may or may not find an optimal solution.  The greedy algorithm is easy to implement and understand.
+
+  J.
+One way I would improve this project is to code a truck-loading algorithm that will consider delivery specifications and delayed packages to reduce the human input required for assigning packages to trucks.  As the company grows, this will become a bigger constraint on manpower.
+Another improvement would be to design a more user-friendly interface.  The current interface works sufficiently but requires exact inputs and will exit after an error or giving a status update.  There are no back buttons, just restart the program.  I enjoy learning about UX (user experience) which is a deep field of study that helps users interact with programs.
+
+  K. 1.
+All the packages were delivered on time and the total combined miles traveled is 93.8 which is under the 140 mile limit.  
+The packages were delivered according to their delivery specifications.  
+The reporting of the status of packages can be accessed by the user through the interface and all information is accurate.
+An efficient hash table with a look-up function is present.
+
+  K. 1. a.
+The time needed to look up a package in the hash table is a constant O(1).  Adding more packages to the hash table would not change the look-up efficiency.  If you are looking up every package, then it would be O(n) time complexity.
+
+  K. 1. b.
+The space usage of data structures is affected by changes in the number of packages to be delivered.  When there are more packages added, it could cause the buckets in the hash table to become full.  This would cause collisions and require more space for the hash table.  When packages are removed, this will free up space for other packages.
+
+  K. 1. c.
+Changes in the number of trucks or cities would not affect space usage or the look-up time.  The hash table is implemented to store package data. Package information, which would include their city, is stored in the hash table as an object.  Having more cities would not affect space usage, only having more objects (packages).
+
+  K. 2.
+Two other data structures that could be used are a dictionary or a linked list.
+
+  K. 2. a.
+A dictionary stores objects in an unordered collection.  Packages are stored as key/value pairs.  A hash table stores them as objects. The time complexity of both is O(1).
+A linked list is a linear storage data structure that has a lookup time complexity of O(n). This is because each node points to the next so the only pointer to the desired node is the preceding element.  The search goes through the nodes until it finds the desired node.  The lookup function in a hash table is O(1).
+
+  L.
+Lysecky, Roman, & Vahid, Frank. (2018, June). C950: Data Structures and Algorithms II, zyBook ISBN: 978-1-5418-4355-4.
+	Retrieved April 2023, from
+	https://learn.zybooks.com/zybook/WGUC950AY20182019
+Tepe, Cemal. (2020, November 17). C950 - Webinar-1 - Let’s Go Hashing. Panopto.
+https://wgu.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f08d7871-d57a-496e-a6a1-ac7601308c71
+garg_ak0109. (2023). Python | datetime.timedelta() function. GeeksforGeeks. 
+https://www.geeksforgeeks.org/python-datetime-timedelta-function/
+Python Enhancement Proposals. (2001, July 5). PEP 8 – Style Guide for Python Code. peps.python.org. 
+https://peps.python.org/pep-0008/
+GeeksforGeeks. (2023). Enumerate() in Python. GeeksforGeeks. 
+https://www.geeksforgeeks.org/enumerate-in-python/ 
+
+  M.
+The content and presentation of my work is detailed and organized.  The content is free of grammatical errors.  The terminology used throughout the assignment is correct.  This demonstrates professional communication in my submission.
